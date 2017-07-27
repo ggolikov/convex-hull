@@ -33,4 +33,11 @@ var markers = L.geoJson(points, {
 }).addTo(map);
 
 // console.log(convexHull(coords));
-convexHull(coords);
+var res = convexHull(coords);
+
+var lls = res.map(function(coord) {
+    return L.latLng(coord.reverse());
+})
+
+L.polyline(lls).addTo(map);
+console.log(lls);
