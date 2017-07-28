@@ -61,14 +61,3 @@ function drawHull() {
 generateButton.onclick = drawHull;
 
 drawHull();
-
-
-var cs = [
-    [0, 1],
-    [2, 0],
-    [3, 1],
-    [2, 2],
-    [2, 1]
-]
-
-console.log(convexHull(cs));

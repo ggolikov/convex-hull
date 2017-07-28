@@ -1,22 +1,25 @@
 function convexHull(data) {
     var upperArr = [],
-        lowerArr = [];
+        lowerArr = [],
+        clone;
 
-    data.sort(function (a, b) {
+    clone = data.slice();
+
+    clone.sort(function (a, b) {
         return a[0] - b[0];
     });
 
     // calculate the upper hull
-    for (var i = 0; i < data.length; i++) {
-        var point = data[i];
+    for (var i = 0; i < clone.length; i++) {
+        var point = clone[i];
 
         upperArr.push(point);
         removePoints(upperArr);
     }
 
     // calculate the lower hull
-    for (var j = data.length - 1; j >= 0; j--) {
-        var point = data[j];
+    for (var j = clone.length - 1; j >= 0; j--) {
+        var point = clone[j];
 
         lowerArr.push(point);
         removePoints(lowerArr);
