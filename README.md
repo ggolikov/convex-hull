@@ -3,7 +3,7 @@ from [Computational Geometry: Algorithms and Applications ](https://www.amazon.c
 
 [Demo](https://ggolikov.github.io/convex-hull/)
 
-```javascript```
+```javascript
 var convexHull = require('deberg-convex-hull');
 
 var coords = [
