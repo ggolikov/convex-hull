@@ -9,24 +9,31 @@ body {
     font-family: Arial;
 }
 
-#wrap {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-}
-#left-panel {
-    width: 350px;
-    height: 100%;
-    float: left;
-}
 #map {
     height: 100%;
 }
 
-#content {
+.wrap {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+.left-panel {
+    width: 350px;
+    height: 100%;
+    float: left;
+    text-align: center;
+}
+
+.content {
     margin: auto;
 }
 
-.header {
-    text-align: center;
+.points-number {
+    width: 60px;
+}
+
+.row {
+    margin-bottom: 4px;
 }
