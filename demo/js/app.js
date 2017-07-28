@@ -5,39 +5,70 @@ var osm = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{
         attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'
     }),
     point = L.latLng([55.753210, 37.621766]),
-    map = new L.Map('map', {layers: [osm], center: point, zoom: 12, maxZoom: 22}),
-    root = document.getElementById('content');
+    lmap = new L.Map('map', {layers: [osm], center: point, zoom: 12, maxZoom: 22}),
+    generateButton = document.getElementsByClassName('generate')[0],
+    pointsNumberButton = document.getElementsByClassName('points-number')[0],
+    markers,
+    polygon;
 
-var bounds = map.getBounds(),
-    n = bounds._northEast.lat,
-    e = bounds._northEast.lng,
-    s = bounds._southWest.lat,
-    w = bounds._southWest.lng,
-    height = n - s,
-    width = e - w,
-    qHeight = height / 4,
-    qWidth = width / 4;
-
-var points = turf.random('points', 100, {
-    bbox: [w + qWidth, s + qHeight, e - qWidth, n - qHeight]
-});
-
-var coords = points.features.map(function (feature) {
-    return feature.geometry.coordinates;
-});
-
-var markers = L.geoJson(points, {
-    pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, {radius: 5, fillColor: "#FFFF00"});
+function drawHull() {
+    if (markers) {
+        lmap.removeLayer(markers);
     }
-}).addTo(map);
 
-// console.log(convexHull(coords));
-var res = convexHull(coords);
+    if (polygon) {
+        lmap.removeLayer(polygon);
+    }
 
-var lls = res.map(function(coord) {
-    return L.latLng(coord.reverse());
-})
+    var bounds = lmap.getBounds(),
+        n = bounds._northEast.lat,
+        e = bounds._northEast.lng,
+        s = bounds._southWest.lat,
+        w = bounds._southWest.lng,
+        height = n - s,
+        width = e - w,
+        qHeight = height / 4,
+        qWidth = width / 4,
+        pointsNumber = pointsNumberButton.value,
+        points,
+        coords,
+        res,
+        lls;
 
-L.polyline(lls).addTo(map);
-console.log(lls);
+    points = turf.random('points', pointsNumber, {
+        bbox: [w + qWidth, s + qHeight, e - qWidth, n - qHeight]
+    });
+
+    coords = points.features.map(function (feature) {
+        return feature.geometry.coordinates;
+    });
+
+    res = convexHull(coords);
+
+    lls = res.map(function(coord) {
+        return L.latLng([coord[1],coord[0]]);
+    });
+
+    markers = L.geoJson(points, {
+        pointToLayer: function (feature, latlng) {
+            return L.circleMarker(latlng, {radius: 3, fillColor: "#ffff00"});
+        }
+    }).addTo(lmap);
+
+    polygon = L.polygon(lls, {color: "#ffb90f"}).addTo(lmap);
+}
+
+generateButton.onclick = drawHull;
+
+drawHull();
+
+
+var cs = [
+    [0, 1],
+    [2, 0],
+    [3, 1],
+    [2, 2],
+    [2, 1]
+]
+
+console.log(convexHull(cs));

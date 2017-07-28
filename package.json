@@ -1,7 +1,7 @@
 {
-  "name": "convex-hull",
+  "name": "deberg-convex-hull",
   "version": "0.1.0",
-  "description": "convex-hull",
+  "description": "deberg-convex-hull",
   "repository": "https://github.com/ggolikov/convex-hull",
   "main": "index.js",
   "author": "Grigory Golikov gr.golikov@gmail.com",

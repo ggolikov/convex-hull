@@ -10,12 +10,19 @@
     <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
 </head>
 <body>
-  <div id="wrap">
-      <div id="left-panel">
+  <div class="wrap">
+      <div class="left-panel">
           <div class="header">
               <h2>Convex hull</h2>
           </div>
-          <div id="content">
+          <div class="content">
+              <div class="row number-row">
+                  <span>points:</span>
+                  <input class="points-number" type="number" value="100"></input>
+              </div>
+              <div class="row button-row">
+                  <input class="generate" type="button" value="Generate"></input>
+              </div>
           </div>
       </div>
       <div id="map">
