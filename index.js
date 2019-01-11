@@ -1,1 +1,1 @@
-require('./src/convex-hull.js');
+module.exports = convexHull = require('./src/convex-hull.js');
