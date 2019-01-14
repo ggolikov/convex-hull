@@ -1,6 +1,6 @@
 {
   "name": "graham-scan-convex-hull",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "graham scan convex hull algorithm",
   "repository": "https://github.com/ggolikov/convex-hull",
   "keywords": [
