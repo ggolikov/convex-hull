@@ -4,7 +4,7 @@ from [Computational Geometry: Algorithms and Applications ](https://www.amazon.c
 [Demo](https://ggolikov.github.io/convex-hull/)
 
 ```javascript
-var convexHull = require('deberg-convex-hull');
+var convexHull = require('graham-scan-convex-hull');
 
 var coords = [
     [0, 1],
